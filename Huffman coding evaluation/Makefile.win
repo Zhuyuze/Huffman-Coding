@@ -1,0 +1,51 @@
+# Project: ADVproj
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe -D__DEBUG__
+CC       = gcc.exe -D__DEBUG__
+WINDRES  = windres.exe
+RES      = ADVproj_private.res
+OBJ      = main.o weights.o freqSort.o binaryHeap.o quadHeap.o pairingHeap.o encoder.o $(RES)
+LINKOBJ  = main.o weights.o freqSort.o binaryHeap.o quadHeap.o pairingHeap.o encoder.o $(RES)
+LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc -g3
+INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
+CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
+BIN      = ADVproj.exe
+CXXFLAGS = $(CXXINCS) -g3 -std=c++11
+CFLAGS   = $(INCS) -g3 -std=c++11
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+main.o: main.cpp
+	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
+
+weights.o: weights.cpp
+	$(CPP) -c weights.cpp -o weights.o $(CXXFLAGS)
+
+freqSort.o: freqSort.cpp
+	$(CPP) -c freqSort.cpp -o freqSort.o $(CXXFLAGS)
+
+binaryHeap.o: binaryHeap.cpp
+	$(CPP) -c binaryHeap.cpp -o binaryHeap.o $(CXXFLAGS)
+
+quadHeap.o: quadHeap.cpp
+	$(CPP) -c quadHeap.cpp -o quadHeap.o $(CXXFLAGS)
+
+pairingHeap.o: pairingHeap.cpp
+	$(CPP) -c pairingHeap.cpp -o pairingHeap.o $(CXXFLAGS)
+
+encoder.o: encoder.cpp
+	$(CPP) -c encoder.cpp -o encoder.o $(CXXFLAGS)
+
+ADVproj_private.res: ADVproj_private.rc 
+	$(WINDRES) -i ADVproj_private.rc --input-format=rc -o ADVproj_private.res -O coff 
+
